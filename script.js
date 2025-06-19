@@ -1,5 +1,8 @@
 // Loading Screen JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme for loading screen
+    initializeLoadingTheme();
+    
     // Check if user has already seen the loading screen
     const hasSeenLoading = localStorage.getItem('techflow_loading_completed');
     
@@ -127,3 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Loading screen initialized');
     console.log('Click anywhere, press SPACE, or tap to skip loading');
 });
+
+// Initialize theme for loading screen
+function initializeLoadingTheme() {
+    const savedTheme = localStorage.getItem('techflow_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}

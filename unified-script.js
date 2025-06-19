@@ -1,6 +1,7 @@
 class UnifiedHomepage {
     constructor() {
         this.initializeComponents();
+        this.initializeTheme(); // Add theme initialization
         this.initializeRippleEffect();
         this.initializeNavigation();
         this.initializeParallax();
@@ -519,6 +520,94 @@ class UnifiedHomepage {
                 window.location.href = 'index.html';
             });
         }
+    }
+
+    initializeTheme() {
+        // Get saved theme or default to light
+        this.currentTheme = localStorage.getItem('techflow_theme') || 'light';
+        this.themeToggle = document.getElementById('themeToggle');
+        this.themeIcon = document.querySelector('.theme-icon');
+        
+        // Apply saved theme
+        this.applyTheme(this.currentTheme);
+        
+        // Add click event for theme toggle
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            mediaQuery.addEventListener('change', (e) => {
+                if (!localStorage.getItem('techflow_theme')) {
+                    this.currentTheme = e.matches ? 'dark' : 'light';
+                    this.applyTheme(this.currentTheme);
+                }
+            });
+        }
+    }
+
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(this.currentTheme);
+        localStorage.setItem('techflow_theme', this.currentTheme);
+        
+        // Add smooth transition animation
+        this.animateThemeChange();
+    }
+
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Update theme icon
+        if (this.themeIcon) {
+            this.themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+        
+        // Update ripple effects color
+        this.updateRippleColors(theme);
+    }
+
+    updateRippleColors(theme) {
+        // Update CSS custom property for ripple colors
+        const rippleColor = theme === 'dark' 
+            ? 'rgba(74, 158, 255, 0.3)' 
+            : 'rgba(102, 126, 234, 0.3)';
+        
+        document.documentElement.style.setProperty('--ripple-color', rippleColor);
+    }
+
+    animateThemeChange() {
+        // Add a smooth transition overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: ${this.currentTheme === 'dark' ? '#000' : '#fff'};
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '0.3';
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(overlay);
+                }, 300);
+            }, 150);
+        });
     }
 
     // Public methods for external interaction
