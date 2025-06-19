@@ -1476,12 +1476,65 @@ body {
         width: 40px;
         height: 40px;
     }
-    
-    .customer-name {
+      .customer-name {
         font-size: 0.8rem;
     }
     
     .customer-company {
         font-size: 0.7rem;
+    }
+}
+
+/* Navigation Hints Footer */
+.nav-hints {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--card-border);
+    padding: 15px 0;
+    margin-top: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-hints .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hint-text {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.hint-text strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+kbd {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+    margin: 0 2px;
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+@media (max-width: 768px) {
+    .hint-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    .nav-hints {
+        padding: 12px 0;
     }
 }

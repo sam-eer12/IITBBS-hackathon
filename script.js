@@ -1,23 +1,30 @@
 // Loading Screen JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Loading screen script started');
+    
     // Initialize theme for loading screen
     initializeLoadingTheme();
-    
-    // Check if user has already seen the loading screen
-    const hasSeenLoading = localStorage.getItem('techflow_loading_completed');
-    
-    if (hasSeenLoading === 'true') {
-        // Skip loading and go directly to unified homepage
-        window.location.href = 'unified-homepage.html';
-        return;
-    }
-    
     const loadingBarFill = document.querySelector('.loading-bar-fill');
     const percentageDisplay = document.getElementById('loading-percentage');
     const loadingOverlay = document.querySelector('.loading-overlay');
     const mainContent = document.querySelector('.main-content');
     const splitBars = document.querySelector('.split-bars');
     const mainLoadingBar = document.querySelector('.main-loading-bar');
+      console.log('Elements found:', {
+        loadingBarFill: !!loadingBarFill,
+        percentageDisplay: !!percentageDisplay,
+        loadingOverlay: !!loadingOverlay,
+        mainContent: !!mainContent,
+        splitBars: !!splitBars,
+        mainLoadingBar: !!mainLoadingBar
+    });
+    
+    // Check if essential elements exist
+    if (!loadingBarFill || !percentageDisplay || !loadingOverlay) {
+        console.error('Essential loading elements missing, redirecting to homepage');
+        window.location.href = 'unified-homepage.html';
+        return;
+    }
     
     let progress = 0;
     const loadingDuration = 3000; // 3 seconds
@@ -72,13 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Apply clip-path to create L-shaped reveal
                 loadingOverlay.style.clipPath = `inset(0 ${100 - leftWidth}% ${100 - bottomHeight}% 0)`;
-                
-                if (currentStep >= steps) {
-                    clearInterval(revealInterval);                    // Complete reveal
+                  if (currentStep >= steps) {
+                    clearInterval(revealInterval);
+                    
+                    // Complete reveal
                     setTimeout(() => {
                         loadingOverlay.style.display = 'none';
-                        // Mark loading as completed in localStorage
-                        localStorage.setItem('techflow_loading_completed', 'true');
                         // Redirect to full homepage
                         setTimeout(() => {
                             window.location.href = 'unified-homepage.html';
@@ -87,14 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 50);
         }, 1000); // Start reveal during L formation
-    }
-      // Skip loading functionality
+    }    // Skip loading functionality
     function skipLoading() {
         clearInterval(loadingInterval);
         progress = 100;
         percentageDisplay.textContent = '100%';
-        loadingBarFill.style.width = '100%';        // Mark loading as completed in localStorage when skipping
-        localStorage.setItem('techflow_loading_completed', 'true');
+        loadingBarFill.style.width = '100%';
+        
         // Immediate redirect when skipping
         setTimeout(() => {
             window.location.href = 'unified-homepage.html';

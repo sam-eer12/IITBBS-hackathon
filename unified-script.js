@@ -6,9 +6,8 @@ class UnifiedHomepage {
         this.initializeNavigation();
         this.initializeParallax();
         this.initializeCarousel();
-        this.initializeCustomerSection();
-        this.initializeScrollEffects();
-        this.initializeLoadingReset(); // Add reset functionality
+        this.initializeCustomerSection();        this.initializeScrollEffects();
+        this.initializeBrowserIntegration(); // Add native browser functionality
     }
 
     initializeComponents() {
@@ -506,20 +505,38 @@ class UnifiedHomepage {
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-    }
-
-    initializeLoadingReset() {
-        // Add functionality to reset loading screen experience
-        const resetButton = document.getElementById('resetLoadingBtn');
-        if (resetButton) {
-            resetButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Clear the localStorage flag
-                localStorage.removeItem('techflow_loading_completed');
-                // Redirect to index.html to show loading screen again
+    }    initializeBrowserIntegration() {
+        // Add native browser functionality for loading screen
+        // Users can:
+        // 1. Use browser back button to go back to loading screen
+        // 2. Use browser refresh (F5 or Ctrl+R) to see loading screen again
+        // 3. Navigate directly to index.html in address bar
+        
+        // Add a subtle hint in the browser title
+        document.title = "TechFlow - Complete Experience (Refresh to see loading)";
+        
+        // Handle browser navigation
+        window.addEventListener('popstate', (event) => {
+            // If user navigates back and there's no previous page, go to loading screen
+            if (window.history.length <= 1) {
                 window.location.href = 'index.html';
-            });
-        }
+            }
+        });
+        
+        // Add keyboard shortcut for quick access to loading screen
+        document.addEventListener('keydown', (event) => {
+            // Ctrl + L = Go to Loading screen
+            if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+                event.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+        
+        console.log('Browser integration initialized');
+        console.log('Tips:');
+        console.log('- Refresh page (F5) to see loading screen');
+        console.log('- Press Ctrl+L to go to loading screen');
+        console.log('- Navigate to index.html directly');
     }
 
     initializeTheme() {

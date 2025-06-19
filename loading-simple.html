@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow - Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #0077be, #00a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #0077be, #00a8ff);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .loading-percentage {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .skip-hint {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+        
+        .features-preview {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .feature-tag:nth-child(1) { animation-delay: 0s; }
+        .feature-tag:nth-child(2) { animation-delay: 0.5s; }
+        .feature-tag:nth-child(3) { animation-delay: 1s; }
+        .feature-tag:nth-child(4) { animation-delay: 1.5s; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-out {
+            animation: fadeOut 1s ease-out forwards;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="logo">TechFlow</div>
+        
+        <div class="loading-text">Loading your experience...</div>
+        
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loadingBar"></div>
+        </div>
+        
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+        
+        <div class="skip-hint">Click anywhere to skip</div>
+        
+        <div class="features-preview">
+            <div class="feature-tag">🌊 Water Effects</div>
+            <div class="feature-tag">📱 Parallax</div>
+            <div class="feature-tag">🎠 Carousel</div>
+            <div class="feature-tag">👥 Customers</div>
+        </div>
+    </div>
+    
+    <script>
+        let progress = 0;
+        let loadingComplete = false;
+        const loadingBar = document.getElementById('loadingBar');
+        const loadingPercentage = document.getElementById('loadingPercentage');
+        const loadingScreen = document.getElementById('loadingScreen');
+        
+        // Check if user wants to skip loading (e.g., returning visitor)
+        const shouldSkipLoading = localStorage.getItem('techflow_loading_completed') === 'true';
+        
+        if (shouldSkipLoading) {
+            // Redirect immediately for returning users
+            redirectToHomepage();
+        } else {
+            // Start loading animation for new users
+            startLoading();
+        }
+        
+        function startLoading() {
+            const interval = setInterval(() => {
+                if (loadingComplete) return;
+                
+                progress += Math.random() * 3 + 1; // Random increment between 1-4%
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    loadingComplete = true;
+                    clearInterval(interval);
+                    
+                    // Mark as completed and redirect
+                    setTimeout(() => {
+                        localStorage.setItem('techflow_loading_completed', 'true');
+                        redirectToHomepage();
+                    }, 500);
+                }
+                
+                updateLoadingDisplay();
+            }, 50);
+        }
+        
+        function updateLoadingDisplay() {
+            loadingBar.style.width = progress + '%';
+            loadingPercentage.textContent = Math.floor(progress) + '%';
+        }
+        
+        function skipLoading() {
+            if (loadingComplete) return;
+            
+            loadingComplete = true;
+            progress = 100;
+            updateLoadingDisplay();
+            
+            localStorage.setItem('techflow_loading_completed', 'true');
+            setTimeout(redirectToHomepage, 300);
+        }
+        
+        function redirectToHomepage() {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'unified-homepage.html';
+            }, 500);
+        }
+        
+        // Event listeners for skipping
+        document.addEventListener('click', skipLoading);
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'Enter') {
+                e.preventDefault();
+                skipLoading();
+            }
+        });
+        document.addEventListener('touchstart', skipLoading);
+        
+        console.log('Simple loading screen initialized');
+        console.log('Should skip loading:', shouldSkipLoading);
+    </script>
+</body>
+</html>

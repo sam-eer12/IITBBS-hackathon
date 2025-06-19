@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Storage & Test Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            background: #0077be;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005c9a;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TechFlow Loading Screen Test</h1>
+    
+    <div class="status">
+        <p>Current localStorage status:</p>
+        <p id="storageStatus">Checking...</p>
+    </div>
+    
+    <button onclick="clearStorage()">Clear Storage & Test Loading</button>
+    <button onclick="goToIndex()">Go to Index (Loading Screen)</button>
+    <button onclick="goToHomepage()">Go to Homepage Direct</button>
+    
+    <script>
+        function updateStatus() {
+            const hasSeenLoading = localStorage.getItem('techflow_loading_completed');
+            document.getElementById('storageStatus').innerHTML = 
+                hasSeenLoading ? 
+                `Loading completed flag: <strong>${hasSeenLoading}</strong> (will skip loading)` : 
+                `Loading completed flag: <strong>not set</strong> (will show loading)`;
+        }
+        
+        function clearStorage() {
+            localStorage.removeItem('techflow_loading_completed');
+            alert('Storage cleared! Loading screen will now show.');
+            updateStatus();
+        }
+        
+        function goToIndex() {
+            window.location.href = 'index.html';
+        }
+        
+        function goToHomepage() {
+            window.location.href = 'unified-homepage.html';
+        }
+        
+        // Update status on load
+        updateStatus();
+    </script>
+</body>
+</html>

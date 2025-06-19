@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFlow - Complete Experience</title>
+    <script>
+        // Check if the page was reloaded
+        const navigationEntry = performance.getEntriesByType("navigation")[0];
+        if (navigationEntry && navigationEntry.type === 'reload') {
+            // If reloaded, go back to the loading screen
+            window.location.href = 'index.html';
+        }
+    </script>
     <link rel="stylesheet" href="unified-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -15,15 +23,14 @@
     <nav class="navbar">
         <div style="padding:5px" class="nav-container">
             <div class="nav-logo">
-                <h2 style="padding:5px">TechFlow made with: claude sonnet 4</h2>
+                <h2 style="padding:5px">TechFlow 
+                </h2>
             </div>            <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#parallax" class="nav-link">Parallax</a></li>
                 <li><a href="#carousel" class="nav-link">Carousel</a></li>
                 <li><a href="#customers" class="nav-link">Customers</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#" class="nav-link" id="resetLoadingBtn" title="Experience loading animation again">🔄 Reset</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>                <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><button class="theme-toggle" id="themeToggle" title="Toggle theme">
                     <span class="theme-icon">🌙</span>
                 </button></li>
@@ -470,9 +477,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>        </div>
     </section>
+
+    <!-- Navigation Hints Footer -->
+    <footer class="nav-hints">
+        <div class="container">
+            <p class="hint-text">
+                💡 <strong>Quick Navigation:</strong> 
+                Press <kbd>F5</kbd> to refresh and see loading screen • 
+                Press <kbd>Ctrl+L</kbd> for loading screen • 
+                Use browser back/forward buttons
+            </p>
+        </div>
+    </footer>
 
     <script src="unified-script.js"></script>
 </body>
