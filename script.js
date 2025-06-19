@@ -1,0 +1,104 @@
+// Loading Screen JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const loadingBarFill = document.querySelector('.loading-bar-fill');
+    const percentageDisplay = document.getElementById('loading-percentage');
+    const loadingOverlay = document.querySelector('.loading-overlay');
+    const mainContent = document.querySelector('.main-content');
+    const splitBars = document.querySelector('.split-bars');
+    const mainLoadingBar = document.querySelector('.main-loading-bar');
+    
+    let progress = 0;
+    const loadingDuration = 3000; // 3 seconds
+    const updateInterval = 30; // Update every 30ms for smooth animation
+    const incrementAmount = (100 / (loadingDuration / updateInterval));
+    
+    // Start loading progress
+    const loadingInterval = setInterval(() => {
+        progress += incrementAmount;
+        
+        // Smooth progress increment
+        const displayProgress = Math.min(progress, 100);
+        
+        percentageDisplay.textContent = Math.floor(displayProgress) + '%';
+        loadingBarFill.style.width = displayProgress + '%';
+        
+        // Complete loading when progress reaches 100%
+        if (progress >= 100) {
+            clearInterval(loadingInterval);
+            percentageDisplay.textContent = '100%';
+            loadingBarFill.style.width = '100%';
+            
+            // Start the breaking animation after a brief pause
+            setTimeout(() => {
+                startBreakingAnimation();
+            }, 300);
+        }
+    }, updateInterval);
+      // Function to start the breaking and expansion animation
+    function startBreakingAnimation() {
+        // Hide the main loading bar
+        mainLoadingBar.style.display = 'none';
+        
+        // Show split bars
+        splitBars.style.display = 'block';
+        
+        // Add the completion animation class
+        splitBars.classList.add('loading-complete');
+        
+        // Start content reveal animation after L formation
+        setTimeout(() => {
+            mainContent.classList.add('content-reveal');
+        }, 1200);
+        
+        // Hide the loading overlay after L expansion
+        setTimeout(() => {
+            loadingOverlay.classList.add('loading-hidden');
+        }, 1800);
+        
+        // Final cleanup
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 2500);
+    }
+    
+    // Skip loading functionality
+    function skipLoading() {
+        clearInterval(loadingInterval);
+        progress = 100;
+        percentageDisplay.textContent = '100%';
+        loadingBarFill.style.width = '100%';
+        setTimeout(() => {
+            startBreakingAnimation();
+        }, 100);
+    }
+    
+    // Keyboard interaction - Press SPACE to skip
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && !loadingOverlay.classList.contains('loading-hidden')) {
+            e.preventDefault();
+            skipLoading();
+        }
+    });
+    
+    // Click interaction - Click anywhere to skip
+    loadingOverlay.addEventListener('click', () => {
+        if (!loadingOverlay.classList.contains('loading-hidden')) {
+            skipLoading();
+        }
+    });
+    
+    // Touch interaction for mobile - Tap to skip
+    loadingOverlay.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (!loadingOverlay.classList.contains('loading-hidden')) {
+            skipLoading();
+        }
+    });
+    
+    // Prevent scrolling during loading
+    document.body.style.overflow = 'hidden';
+    
+    console.log('Loading screen initialized');
+    console.log('Click anywhere, press SPACE, or tap to skip loading');
+});

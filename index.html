@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Screen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>    <div class="loading-container">
+        <!-- Loading screen overlay -->
+        <div class="loading-overlay">
+            <!-- Thick loading bar in middle -->
+            <div class="main-loading-bar">
+                <div class="loading-bar-fill"></div>
+            </div>
+            
+            <!-- Split bars animation -->
+            <div class="split-bars">
+                <div class="split-bar-left"></div>
+                <div class="split-bar-right"></div>
+            </div>
+            
+            <!-- Percentage in bottom left -->
+            <div class="percentage-display">
+                <span id="loading-percentage">0%</span>
+            </div>
+        </div>
+        
+        <!-- Main content (home page) -->
+        <div class="main-content">
+            <div class="hero-section">
+                <h1>Welcome to Our Platform</h1>
+                <p>Discover amazing features and experiences</p>
+                <button class="cta-button">Get Started</button>
+            </div>
+            
+            <div class="features-section">
+                <div class="feature-card">
+                    <h3>Feature One</h3>
+                    <p>Amazing functionality that will blow your mind</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Feature Two</h3>
+                    <p>Incredible tools to boost your productivity</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Feature Three</h3>
+                    <p>Seamless integration with your workflow</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
