@@ -17,6 +17,9 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="../parallax/index.html" class="nav-link">Parallax</a></li>
+                <li><a href="../carousel/index.html" class="nav-link">Carousel</a></li>
+                <li><a href="../customers/index.html" class="nav-link">Customers</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -326,5 +329,245 @@
     </footer>
 
     <script src="script.js"></script>
+      <!-- Water Ripple Effect Container -->
+    <div class="water-ripple-container" id="rippleContainer"></div>
+    <div class="water-surface" id="waterSurface"></div>
+    
+    <script>
+        // Enhanced Directional Water Ripple Effect for Homepage
+        class DirectionalWaterRippleEffect {
+            constructor() {
+                this.rippleContainer = document.getElementById('rippleContainer');
+                this.waterSurface = document.getElementById('waterSurface');
+                this.lastMouseX = 0;
+                this.lastMouseY = 0;
+                this.mouseVelocityX = 0;
+                this.mouseVelocityY = 0;
+                this.isMoving = false;
+                this.lastRippleTime = 0;
+                this.velocityHistory = [];
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.startAmbientEffects();
+            }
+            
+            setupEventListeners() {
+                document.addEventListener('mousemove', (e) => {
+                    this.handleMouseMove(e);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    this.createLargeDirectionalRipple(e.clientX, e.clientY);
+                });
+                
+                // Enhanced ripples for homepage elements
+                const interactiveElements = document.querySelectorAll('.btn, .service-card, .feature-card, .floating-shape, .asset-card');
+                interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', (e) => {
+                        const rect = element.getBoundingClientRect();
+                        this.createMediumDirectionalRipple(rect.left + rect.width/2, rect.top + rect.height/2);
+                    });
+                });
+            }
+            
+            calculateVelocity(mouseX, mouseY) {
+                const deltaX = mouseX - this.lastMouseX;
+                const deltaY = mouseY - this.lastMouseY;
+                
+                this.mouseVelocityX = deltaX;
+                this.mouseVelocityY = deltaY;
+                
+                // Store velocity history for momentum calculation
+                this.velocityHistory.push({ x: deltaX, y: deltaY });
+                if (this.velocityHistory.length > 5) {
+                    this.velocityHistory.shift();
+                }
+                
+                this.lastMouseX = mouseX;
+                this.lastMouseY = mouseY;
+            }
+            
+            getAverageVelocity() {
+                if (this.velocityHistory.length === 0) return { x: 0, y: 0 };
+                
+                const avgX = this.velocityHistory.reduce((sum, v) => sum + v.x, 0) / this.velocityHistory.length;
+                const avgY = this.velocityHistory.reduce((sum, v) => sum + v.y, 0) / this.velocityHistory.length;
+                
+                return { x: avgX, y: avgY };
+            }
+            
+            handleMouseMove(e) {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                this.calculateVelocity(mouseX, mouseY);
+                
+                // Update water surface
+                this.waterSurface.style.setProperty('--mouse-x', (mouseX / window.innerWidth * 100) + '%');
+                this.waterSurface.style.setProperty('--mouse-y', (mouseY / window.innerHeight * 100) + '%');
+                
+                // Create directional movement ripples
+                const currentTime = Date.now();
+                if (currentTime - this.lastRippleTime > 80) {
+                    const velocity = this.getAverageVelocity();
+                    const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                    
+                    if (speed > 2) { // Only create ripples when moving with sufficient speed
+                        this.createDirectionalMovementRipple(mouseX, mouseY, velocity);
+                        this.createDirectionalTrail(mouseX, mouseY, velocity);
+                        this.lastRippleTime = currentTime;
+                    }
+                }
+                
+                this.isMoving = true;
+                clearTimeout(this.moveTimeout);
+                this.moveTimeout = setTimeout(() => {
+                    this.isMoving = false;
+                    this.velocityHistory = [];
+                }, 100);
+            }
+              createDirectionalMovementRipple(x, y, velocity) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                
+                const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                const size = Math.min(8 + speed * 0.8, 20);
+                
+                // Calculate angle based on movement direction
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                
+                // Calculate momentum offset
+                const momentumX = velocity.x * 1.5;
+                const momentumY = velocity.y * 1.5;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                
+                // Adjust opacity based on speed
+                const opacity = Math.min(0.3 + speed * 0.02, 0.7);
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(102, 126, 234, ${opacity}) 0%, 
+                    rgba(118, 75, 162, ${opacity * 0.7}) 30%, 
+                    rgba(255, 255, 255, ${opacity * 0.3}) 60%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 400);
+            }
+              createMediumDirectionalRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                
+                const velocity = this.getAverageVelocity();
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                const size = 15 + Math.random() * 8;
+                
+                const momentumX = velocity.x * 1;
+                const momentumY = velocity.y * 1;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(102, 126, 234, 0.5) 0%, 
+                    rgba(118, 75, 162, 0.3) 30%, 
+                    rgba(255, 255, 255, 0.2) 60%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+            
+            createLargeDirectionalRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                
+                const velocity = this.getAverageVelocity();
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                const size = 80 + Math.random() * 40;
+                
+                const momentumX = velocity.x * 4;
+                const momentumY = velocity.y * 4;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(102, 126, 234, 0.6) 0%, 
+                    rgba(118, 75, 162, 0.4) 30%, 
+                    rgba(255, 255, 255, 0.3) 60%, 
+                    transparent 100%)`;
+                ripple.style.animationDuration = '2s';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 2000);
+            }
+            
+            createDirectionalTrail(x, y, velocity) {
+                const trail = document.createElement('div');
+                trail.classList.add('water-trail');
+                
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                
+                trail.style.left = x + 'px';
+                trail.style.top = y + 'px';
+                trail.style.transform = `rotate(${angle}deg)`;
+                trail.style.background = `linear-gradient(${angle}deg, 
+                    rgba(102, 126, 234, 0.4) 0%, 
+                    rgba(118, 75, 162, 0.2) 50%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(trail);
+                
+                setTimeout(() => {
+                    trail.remove();
+                }, 1000);
+            }
+            
+            startAmbientEffects() {
+                setInterval(() => {
+                    if (!this.isMoving && Math.random() > 0.8) {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * window.innerHeight;
+                        const randomVelocity = { 
+                            x: (Math.random() - 0.5) * 10, 
+                            y: (Math.random() - 0.5) * 10 
+                        };
+                        this.createDirectionalMovementRipple(x, y, randomVelocity);
+                    }
+                }, 4000);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            new DirectionalWaterRippleEffect();
+        });
+    </script>
 </body>
 </html>

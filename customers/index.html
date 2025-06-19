@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Section</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Loading</a>
+                <a href="../homepage/index.html" class="nav-link">Homepage</a>
+                <a href="../parallax/index.html" class="nav-link">Parallax</a>
+                <a href="../carousel/index.html" class="nav-link">Carousel</a>
+                <a href="#" class="nav-link active">Customers</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Water Ripple Effect Container -->
+    <div class="water-ripple-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <section class="header-section">
+                <h1 class="main-title">Our Valued Customers</h1>
+                <p class="subtitle">Discover the amazing companies and individuals who trust our services</p>
+            </section>
+
+            <!-- Customer Grid Section -->
+            <section class="customer-grid-section">
+                <div class="grid-container">
+                    <div class="customer-grid" id="customerGrid">
+                        <!-- Grid items will be generated dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Refresh Indicator -->
+                <div class="refresh-indicator">
+                    <div class="refresh-progress"></div>
+                    <span class="refresh-text">Refreshing in <span id="countdown">5</span>s</span>
+                </div>
+            </section>
+
+            <!-- Customer Info Modal -->
+            <div class="customer-modal" id="customerModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img class="modal-avatar" id="modalAvatar" src="" alt="">
+                        <div class="modal-header-info">
+                            <h3 class="modal-name" id="modalName"></h3>
+                            <p class="modal-title" id="modalTitle"></p>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info-row">
+                            <span class="info-label">Company:</span>
+                            <span class="info-value" id="modalCompany"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Industry:</span>
+                            <span class="info-value" id="modalIndustry"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Since:</span>
+                            <span class="info-value" id="modalSince"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Rating:</span>
+                            <div class="rating" id="modalRating"></div>
+                        </div>
+                        <p class="customer-description" id="modalDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class CustomerSection {
+            constructor() {
+                this.grid = document.getElementById('customerGrid');
+                this.modal = document.getElementById('customerModal');
+                this.countdown = document.getElementById('countdown');
+                this.refreshProgress = document.querySelector('.refresh-progress');
+                
+                this.currentCustomers = [];
+                this.refreshInterval = null;
+                this.countdownInterval = null;
+                this.timeLeft = 5;
+                
+                this.customers = this.generateCustomerData();
+                this.init();
+            }
+            
+            generateCustomerData() {
+                const firstNames = ['Alex', 'Sarah', 'Michael', 'Emma', 'David', 'Lisa', 'Chris', 'Anna', 'Mark', 'Sophie', 'James', 'Maria', 'John', 'Isabella', 'Robert', 'Emily', 'Daniel', 'Olivia', 'Ryan', 'Grace'];
+                const lastNames = ['Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee'];
+                const companies = ['TechCorp', 'InnovateLab', 'FutureSoft', 'DataFlow', 'CloudWorks', 'SmartSys', 'NetCore', 'DevHub', 'CodeCraft', 'ByteTech', 'PixelPro', 'WebWave', 'AppForge', 'SysGen', 'InfoTech', 'DigiMax', 'ProCode', 'TechFlow', 'DataLink', 'CyberNet'];
+                const industries = ['Technology', 'Healthcare', 'Finance', 'Education', 'Retail', 'Manufacturing', 'Consulting', 'Media', 'Gaming', 'E-commerce'];
+                const titles = ['CEO', 'CTO', 'Lead Developer', 'Product Manager', 'Designer', 'Data Scientist', 'Marketing Director', 'Sales Manager', 'Engineer', 'Analyst'];
+                
+                const customers = [];
+                
+                for (let i = 0; i < 100; i++) {
+                    const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                    const company = companies[Math.floor(Math.random() * companies.length)];
+                    const industry = industries[Math.floor(Math.random() * industries.length)];
+                    const title = titles[Math.floor(Math.random() * titles.length)];
+                    
+                    customers.push({
+                        id: i + 1,
+                        name: `${firstName} ${lastName}`,
+                        company: company,
+                        industry: industry,
+                        title: title,
+                        avatar: `https://images.unsplash.com/photo-${1500000000000 + Math.floor(Math.random() * 100000000)}?w=100&h=100&fit=crop&crop=face&auto=format`,
+                        since: 2018 + Math.floor(Math.random() * 6),
+                        rating: 3 + Math.random() * 2,
+                        description: `${firstName} has been instrumental in driving innovation at ${company}. Their expertise in ${industry.toLowerCase()} has helped transform their business processes and achieve remarkable growth.`
+                    });
+                }
+                
+                return customers;
+            }
+            
+            init() {
+                this.createGrid();
+                this.populateGrid();
+                this.startRefreshCycle();
+                this.initRippleEffect();
+            }
+            
+            createGrid() {
+                // Create 2x10 grid (20 items)
+                for (let i = 0; i < 20; i++) {
+                    const gridItem = document.createElement('div');
+                    gridItem.className = 'customer-card';
+                    gridItem.addEventListener('mouseenter', (e) => this.showCustomerInfo(e));
+                    gridItem.addEventListener('mouseleave', () => this.hideCustomerInfo());
+                    this.grid.appendChild(gridItem);
+                }
+            }
+            
+            populateGrid() {
+                const gridItems = this.grid.querySelectorAll('.customer-card');
+                const shuffledCustomers = [...this.customers].sort(() => Math.random() - 0.5);
+                this.currentCustomers = shuffledCustomers.slice(0, 20);
+                
+                gridItems.forEach((item, index) => {
+                    const customer = this.currentCustomers[index];
+                    item.innerHTML = `
+                        <div class="card-content">
+                            <div class="customer-avatar">
+                                <img src="https://images.unsplash.com/photo-${1500000000000 + Math.floor(Math.random() * 100000000)}?w=80&h=80&fit=crop&crop=face&auto=format" alt="${customer.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiM2NjdlZWEiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIyMCIgeT0iMjAiPgo8cGF0aCBkPSJNMTIgMTJDMTQuMjEgMTIgMTYgMTAuMjEgMTYgOEMxNiA1Ljc5IDE0LjIxIDQgMTIgNEM5Ljc5IDQgOCA1Ljc5IDggOEM4IDEwLjIxIDkuNzkgMTIgMTIgMTJaTTEyIDE0QzkuMzMgMTQgNCAyNS4zMyA0IDIyVjIwSDIwVjIyQzIwIDI1LjMzIDE0LjY3IDE0IDEyIDE0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+                            </div>
+                            <div class="customer-info">
+                                <h4 class="customer-name">${customer.name}</h4>
+                                <p class="customer-company">${customer.company}</p>
+                            </div>
+                        </div>
+                    `;
+                    item.dataset.customerId = customer.id;
+                    
+                    // Add animation class
+                    item.classList.add('fade-in');
+                    setTimeout(() => item.classList.remove('fade-in'), 300);
+                });
+            }
+            
+            showCustomerInfo(event) {
+                const customerId = parseInt(event.currentTarget.dataset.customerId);
+                const customer = this.currentCustomers.find(c => c.id === customerId);
+                
+                if (!customer) return;
+                
+                // Populate modal
+                document.getElementById('modalAvatar').src = event.currentTarget.querySelector('.customer-avatar img').src;
+                document.getElementById('modalName').textContent = customer.name;
+                document.getElementById('modalTitle').textContent = customer.title;
+                document.getElementById('modalCompany').textContent = customer.company;
+                document.getElementById('modalIndustry').textContent = customer.industry;
+                document.getElementById('modalSince').textContent = customer.since;
+                document.getElementById('modalDescription').textContent = customer.description;
+                
+                // Generate rating stars
+                const rating = Math.round(customer.rating);
+                const ratingContainer = document.getElementById('modalRating');
+                ratingContainer.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    const star = document.createElement('span');
+                    star.textContent = i < rating ? '★' : '☆';
+                    star.className = i < rating ? 'star filled' : 'star';
+                    ratingContainer.appendChild(star);
+                }
+                
+                // Position and show modal
+                const rect = event.currentTarget.getBoundingClientRect();
+                this.modal.style.left = `${rect.right + 20}px`;
+                this.modal.style.top = `${rect.top}px`;
+                this.modal.classList.add('show');
+            }
+            
+            hideCustomerInfo() {
+                this.modal.classList.remove('show');
+            }
+            
+            startRefreshCycle() {
+                this.refreshInterval = setInterval(() => {
+                    this.populateGrid();
+                    this.timeLeft = 5;
+                }, 5000);
+                
+                this.countdownInterval = setInterval(() => {
+                    this.timeLeft--;
+                    this.countdown.textContent = this.timeLeft;
+                    
+                    // Update progress bar
+                    const progress = ((5 - this.timeLeft) / 5) * 100;
+                    this.refreshProgress.style.width = `${progress}%`;
+                    
+                    if (this.timeLeft <= 0) {
+                        this.timeLeft = 5;
+                    }
+                }, 1000);
+            }
+            
+            initRippleEffect() {
+                this.rippleContainer = document.querySelector('.water-ripple-container');
+                this.lastMousePosition = { x: 0, y: 0 };
+                this.velocityHistory = [];
+                this.isMoving = false;
+                this.moveTimeout = null;
+                
+                document.addEventListener('mousemove', (e) => {
+                    this.handleMouseMove(e);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    this.createClickRipple(e.clientX, e.clientY);
+                });
+                
+                this.startTrailAnimation();
+            }
+            
+            handleMouseMove(event) {
+                const { clientX, clientY } = event;
+                
+                // Calculate velocity
+                const currentTime = Date.now();
+                const velocity = {
+                    x: clientX - this.lastMousePosition.x,
+                    y: clientY - this.lastMousePosition.y,
+                    time: currentTime
+                };
+                
+                this.velocityHistory.push(velocity);
+                if (this.velocityHistory.length > 5) {
+                    this.velocityHistory.shift();
+                }
+                
+                this.lastMousePosition = { x: clientX, y: clientY };
+                
+                // Create movement ripple if moving fast enough
+                const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                if (speed > 2) {
+                    this.createDirectionalMovementRipple(clientX, clientY, velocity);
+                }
+                
+                this.isMoving = true;
+                clearTimeout(this.moveTimeout);
+                this.moveTimeout = setTimeout(() => {
+                    this.isMoving = false;
+                    this.velocityHistory = [];
+                }, 100);
+            }
+            
+            createDirectionalMovementRipple(x, y, velocity) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                
+                const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                const size = Math.min(8 + speed * 0.8, 20);
+                
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                const momentumX = velocity.x * 1.5;
+                const momentumY = velocity.y * 1.5;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                
+                const opacity = Math.min(0.3 + speed * 0.02, 0.7);
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(102, 126, 234, ${opacity}) 0%, 
+                    rgba(118, 75, 162, ${opacity * 0.7}) 30%, 
+                    rgba(255, 255, 255, ${opacity * 0.3}) 60%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 400);
+            }
+            
+            createClickRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple');
+                
+                const size = 30 + Math.random() * 20;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 500);
+            }
+            
+            startTrailAnimation() {
+                setInterval(() => {
+                    if (!this.isMoving) {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * window.innerHeight;
+                        const randomVelocity = {
+                            x: (Math.random() - 0.5) * 4,
+                            y: (Math.random() - 0.5) * 4
+                        };
+                        this.createDirectionalMovementRipple(x, y, randomVelocity);
+                    }
+                }, 3000);
+            }
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new CustomerSection();
+        });
+    </script>
+</body>
+</html>

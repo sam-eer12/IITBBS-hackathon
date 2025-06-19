@@ -1,5 +1,14 @@
 // Loading Screen JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has already seen the loading screen
+    const hasSeenLoading = localStorage.getItem('techflow_loading_completed');
+    
+    if (hasSeenLoading === 'true') {
+        // Skip loading and go directly to unified homepage
+        window.location.href = 'unified-homepage.html';
+        return;
+    }
+    
     const loadingBarFill = document.querySelector('.loading-bar-fill');
     const percentageDisplay = document.getElementById('loading-percentage');
     const loadingOverlay = document.querySelector('.loading-overlay');
@@ -62,13 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingOverlay.style.clipPath = `inset(0 ${100 - leftWidth}% ${100 - bottomHeight}% 0)`;
                 
                 if (currentStep >= steps) {
-                    clearInterval(revealInterval);
-                    // Complete reveal
+                    clearInterval(revealInterval);                    // Complete reveal
                     setTimeout(() => {
                         loadingOverlay.style.display = 'none';
+                        // Mark loading as completed in localStorage
+                        localStorage.setItem('techflow_loading_completed', 'true');
                         // Redirect to full homepage
                         setTimeout(() => {
-                            window.location.href = 'homepage/index.html';
+                            window.location.href = 'unified-homepage.html';
                         }, 500);
                     }, 300);
                 }
@@ -80,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(loadingInterval);
         progress = 100;
         percentageDisplay.textContent = '100%';
-        loadingBarFill.style.width = '100%';
-        
+        loadingBarFill.style.width = '100%';        // Mark loading as completed in localStorage when skipping
+        localStorage.setItem('techflow_loading_completed', 'true');
         // Immediate redirect when skipping
         setTimeout(() => {
-            window.location.href = 'homepage/index.html';
+            window.location.href = 'unified-homepage.html';
         }, 300);
     }
     

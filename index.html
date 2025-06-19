@@ -71,7 +71,7 @@
             <div class="hero-section">
                 <h1>Welcome to Our Platform</h1>
                 <p>Discover amazing features and experiences</p>
-                <a href="homepage/index.html" class="cta-button">Explore Homepage</a>
+                <a href="unified-homepage.html" class="cta-button">Explore Homepage</a>
             </div>
             
             <div class="features-section">
@@ -92,5 +92,155 @@
     </div>
     
     <script src="script.js"></script>
+    
+    <!-- Water Ripple Effect Container -->
+    <div class="water-ripple-container" id="rippleContainer"></div>
+    <div class="water-surface" id="waterSurface"></div>
+    <div class="water-cursor" id="waterCursor"></div>
+    
+    <script>
+        // Water Ripple Effect for Loading Screen
+        class WaterRippleEffect {
+            constructor() {
+                this.rippleContainer = document.getElementById('rippleContainer');
+                this.waterSurface = document.getElementById('waterSurface');
+                this.waterCursor = document.getElementById('waterCursor');
+                this.isMoving = false;
+                this.lastRippleTime = 0;
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.startLoadingEffects();
+            }
+            
+            setupEventListeners() {
+                document.addEventListener('mousemove', (e) => {
+                    this.handleMouseMove(e);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    this.createLargeRipple(e.clientX, e.clientY);
+                });
+                
+                // Loading bar ripple effect
+                const loadingBar = document.querySelector('.loading-bar');
+                if (loadingBar) {
+                    loadingBar.addEventListener('mouseenter', (e) => {
+                        const rect = loadingBar.getBoundingClientRect();
+                        this.createMediumRipple(rect.left + rect.width/2, rect.top + rect.height/2);
+                    });
+                }
+            }
+            
+            handleMouseMove(e) {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                // Update water cursor
+                this.waterCursor.style.left = (mouseX - 10) + 'px';
+                this.waterCursor.style.top = (mouseY - 10) + 'px';
+                
+                // Update water surface
+                this.waterSurface.style.setProperty('--mouse-x', (mouseX / window.innerWidth * 100) + '%');
+                this.waterSurface.style.setProperty('--mouse-y', (mouseY / window.innerHeight * 100) + '%');
+                
+                // Create movement ripples
+                const currentTime = Date.now();
+                if (currentTime - this.lastRippleTime > 150) {
+                    this.createMovementRipple(mouseX, mouseY);
+                    this.createTrail(mouseX, mouseY);
+                    this.lastRippleTime = currentTime;
+                }
+            }
+            
+            createMovementRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple');
+                
+                const size = 25 + Math.random() * 15;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 2000);
+            }
+            
+            createMediumRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple');
+                
+                const size = 50 + Math.random() * 25;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.3) 30%, rgba(255, 255, 255, 0.2) 60%, transparent 100%)';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 2000);
+            }
+            
+            createLargeRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple');
+                
+                const size = 80 + Math.random() * 40;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.4) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)';
+                ripple.style.animationDuration = '2.5s';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 2500);
+            }
+            
+            createTrail(x, y) {
+                const trail = document.createElement('div');
+                trail.classList.add('water-trail');
+                trail.style.left = x + 'px';
+                trail.style.top = y + 'px';
+                
+                this.rippleContainer.appendChild(trail);
+                
+                setTimeout(() => {
+                    trail.remove();
+                }, 1500);
+            }
+            
+            startLoadingEffects() {
+                // Create ripples synchronized with loading progress
+                const interval = setInterval(() => {
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    this.createMediumRipple(centerX + (Math.random() - 0.5) * 200, centerY + (Math.random() - 0.5) * 200);
+                }, 2000);
+                
+                // Stop loading effects after loading completes
+                setTimeout(() => {
+                    clearInterval(interval);
+                }, 10000);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            new WaterRippleEffect();
+        });
+    </script>
 </body>
 </html>

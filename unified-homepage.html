@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow - Complete Experience</title>
+    <link rel="stylesheet" href="unified-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Water Ripple Effect Container -->
+    <div class="water-ripple-container"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TechFlow</h2>
+            </div>            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#parallax" class="nav-link">Parallax</a></li>
+                <li><a href="#carousel" class="nav-link">Carousel</a></li>
+                <li><a href="#customers" class="nav-link">Customers</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" id="resetLoadingBtn" title="Experience loading animation again">🔄 Reset</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Original Homepage Features -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <!-- Left side elements -->
+                    <div class="floating-shape circle-chart" data-position="top-left">
+                        <div class="chart-image">
+                            <img src="assets/graph.png" alt="Analytics Chart">
+                        </div>
+                        <div class="chart-container">
+                            <div class="pie-chart"></div>
+                            <div class="chart-labels">
+                                <div class="label">Analytics</div>
+                                <div class="value">78.5%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape data-card" data-position="mid-left">
+                        <div class="card-image">
+                            <img src="assets/cards.png" alt="Data Cards">
+                        </div>
+                        <div class="card-content">
+                            <h4>Real-time Data</h4>
+                            <p>Live analytics and insights</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape stats-widget" data-position="bottom-left">
+                        <div class="stats-image">
+                            <img src="assets/stats.png" alt="Statistics">
+                        </div>
+                        <div class="stats-content">
+                            <div class="stat-item">
+                                <span class="stat-number">2.5M</span>
+                                <span class="stat-label">Users</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">99.9%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right side elements -->
+                    <div class="floating-shape feature-card" data-position="top-right">
+                        <div class="feature-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Secure</h4>
+                            <p>Enterprise-grade security</p>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape service-card" data-position="mid-right">
+                        <div class="service-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h4>Reliable</h4>
+                            <p>99.9% uptime guarantee</p>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape innovation-card" data-position="bottom-right">
+                        <div class="innovation-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 11H7l3-7 3 7h-2l3 7-3-7z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="innovation-content">
+                            <h4>Fast</h4>
+                            <p>Lightning-fast performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    The Future of 
+                    <span class="gradient-text">Digital Innovation</span>
+                </h1>
+                <p class="hero-description">
+                    Experience cutting-edge technology with seamless parallax animations, 
+                    dynamic carousels, interactive customer showcases, and immersive water effects.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section id="parallax" class="parallax-section">
+        <div class="parallax-bg" data-speed="0.5">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Team collaboration background">
+        </div>
+        
+        <div class="parallax-content">
+            <div class="container">
+                <h2 class="section-title">Parallax Experience</h2>
+                <p class="section-subtitle">Immersive visual storytelling with depth and motion</p>
+                
+                <!-- Video Call Interface -->
+                <div class="video-call-interface" data-speed="0.8">
+                    <div class="video-header">
+                        <div class="video-controls">
+                            <button class="control-btn active">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                                    <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn end-call">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 4H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM3 18V6h18v12H3z"/>
+                                    <path d="M9 10l6 4V6l-6 4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="meeting-info">
+                            <span class="meeting-title">Team Collaboration</span>
+                            <span class="meeting-time">42:15</span>
+                        </div>
+                    </div>
+                    <div class="video-grid">
+                        <div class="video-participant main">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfsR1j5c5rh3Or62MF39b1EffRT1nXnqN4BQ&s" alt="Participant 1">
+                            <div class="participant-name">Sarah Chen</div>
+                        </div>
+                        <div class="video-participant">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Participant 2">
+                            <div class="participant-name">Alex Rivera</div>
+                        </div>
+                        <div class="video-participant">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Participant 3">
+                            <div class="participant-name">Maya Patel</div>
+                        </div>
+                        <div class="video-participant">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Participant 4">
+                            <div class="participant-name">David Kim</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Feature Cards -->
+                <div class="floating-cards" data-speed="0.3">
+                    <div class="floating-card" data-position="left">
+                        <div class="card-icon">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9" stroke="currentColor" stroke-width="2"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h4>Happy Clients</h4>
+                        <p>10,000+ satisfied customers worldwide</p>
+                    </div>
+                    
+                    <div class="floating-card" data-position="center">
+                        <div class="card-icon">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h4>Premium Quality</h4>
+                        <p>Award-winning solutions and services</p>
+                    </div>
+                    
+                    <div class="floating-card" data-position="right">
+                        <div class="card-icon">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h4>Lightning Fast</h4>
+                        <p>Optimized for maximum performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section id="carousel" class="carousel-section">
+        <div class="container">
+            <h2 class="section-title">Dynamic Showcase</h2>
+            <p class="section-subtitle">Experience our portfolio through interactive carousel navigation</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80')">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Data Analytics Platform</h3>
+                                    <p>Advanced analytics and real-time insights for data-driven decisions</p>
+                                    <button class="carousel-btn">Learn More</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Cloud Infrastructure</h3>
+                                    <p>Scalable and secure cloud solutions for modern businesses</p>
+                                    <button class="carousel-btn">Explore</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80')">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Mobile Applications</h3>
+                                    <p>Native and cross-platform mobile solutions</p>
+                                    <button class="carousel-btn">View Apps</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80')">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>AI & Machine Learning</h3>
+                                    <p>Intelligent automation and predictive analytics</p>
+                                    <button class="carousel-btn">Discover</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Digital Marketing</h3>
+                                    <p>Data-driven marketing strategies and campaign optimization</p>
+                                    <button class="carousel-btn">Get Started</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-navigation">
+                        <button class="carousel-nav prev" id="prevBtn">‹</button>
+                        <button class="carousel-nav next" id="nextBtn">›</button>
+                    </div>
+                    
+                    <div class="carousel-indicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                        <button class="indicator" data-slide="4"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Section -->
+    <section id="customers" class="customer-section">
+        <div class="container">
+            <h2 class="section-title">Our Valued Customers</h2>
+            <p class="section-subtitle">Discover the amazing companies and individuals who trust our services</p>
+            
+            <div class="customer-grid-container">
+                <div class="customer-grid" id="customerGrid">
+                    <!-- Grid items will be generated dynamically -->
+                </div>
+                
+                <!-- Refresh Indicator -->
+                <div class="refresh-indicator">
+                    <div class="refresh-progress"></div>
+                    <span class="refresh-text">Refreshing in <span id="countdown">5</span>s</span>
+                </div>
+            </div>
+            
+            <!-- Customer Info Modal -->
+            <div class="customer-modal" id="customerModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img class="modal-avatar" id="modalAvatar" src="" alt="">
+                        <div class="modal-header-info">
+                            <h3 class="modal-name" id="modalName"></h3>
+                            <p class="modal-title" id="modalTitle"></p>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info-row">
+                            <span class="info-label">Company:</span>
+                            <span class="info-value" id="modalCompany"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Industry:</span>
+                            <span class="info-value" id="modalIndustry"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Since:</span>
+                            <span class="info-value" id="modalSince"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Rating:</span>
+                            <div class="rating" id="modalRating"></div>
+                        </div>
+                        <p class="customer-description" id="modalDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About TechFlow</h2>
+                    <p class="section-description">
+                        We're a cutting-edge technology company that specializes in creating 
+                        immersive digital experiences. Our expertise spans from interactive 
+                        web applications to advanced data analytics platforms.
+                    </p>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <h4>Innovation</h4>
+                            <p>Cutting-edge solutions</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 22c5.421 0 10-4.579 10-10s-4.579-10-10-10-10 4.579-10 10 4.579 10 10 10zm-1-11h2v6h-2v-6zm0-4h2v2h-2V7z"/>
+                                </svg>
+                            </div>
+                            <h4>Quality</h4>
+                            <p>Premium standards</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <h4>Scalability</h4>
+                            <p>Growth-ready solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to transform your digital presence?</p>
+            
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Tech Street, Innovation City</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@techflow.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="unified-script.js"></script>
+</body>
+</html>

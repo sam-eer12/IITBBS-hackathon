@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Carousel Switch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>CarouselFlow</h2>
+            </div>            <ul class="nav-menu">
+                <li><a href="../homepage/index.html" class="nav-link">Home</a></li>
+                <li><a href="../parallax/index.html" class="nav-link">Parallax</a></li>
+                <li><a href="../customers/index.html" class="nav-link">Customers</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel Switch -->
+    <section class="hero-section" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="title-section">
+                    <h1 class="hero-title">Interactive</h1>
+                    <h1 class="hero-subtitle">Carousel Experience</h1>
+                    <p class="hero-description">Seamlessly switch between stunning visuals with our advanced carousel technology</p>
+                </div>
+                
+                <!-- Main Carousel Container -->
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <!-- Carousel Items -->
+                        <div class="carousel-item active" data-bg="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Modern Architecture</h3>
+                                    <p>Discover contemporary design excellence</p>
+                                    <button class="item-btn">Explore</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" data-bg="https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=2044&q=80">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Urban Landscapes</h3>
+                                    <p>Experience the beauty of city life</p>
+                                    <button class="item-btn">Discover</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" data-bg="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Natural Beauty</h3>
+                                    <p>Immerse yourself in nature's wonders</p>
+                                    <button class="item-btn">Journey</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" data-bg="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Mountain Peaks</h3>
+                                    <p>Reach new heights of inspiration</p>
+                                    <button class="item-btn">Ascend</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" data-bg="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80">
+                            <div class="item-content">
+                                <div class="item-overlay">
+                                    <h3>Forest Serenity</h3>
+                                    <p>Find peace in the wilderness</p>
+                                    <button class="item-btn">Relax</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-nav prev" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                        <button class="indicator" data-slide="4"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Switch Animation -->
+        <div class="background-switcher">
+            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=2044&q=80')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80')"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Carousel Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Smooth Transitions</h3>
+                    <p>Experience seamless switching between carousel items with fluid animations</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Perfectly adapted for all screen sizes and touch interactions</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Dynamic Backgrounds</h3>
+                    <p>Background colors and images change dynamically with each slide</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3>Interactive Controls</h3>
+                    <p>Multiple ways to navigate: arrows, indicators, touch, and keyboard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Image Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gallery Image 1">
+                    <div class="gallery-overlay">
+                        <h4>Creative Vision</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gallery Image 2">
+                    <div class="gallery-overlay">
+                        <h4>Digital Art</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gallery Image 3">
+                    <div class="gallery-overlay">
+                        <h4>Modern Design</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gallery Image 4">
+                    <div class="gallery-overlay">
+                        <h4>Innovation</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Create Something Amazing</h3>
+                    <p>Ready to implement interactive carousels in your project? Contact us for custom solutions.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@carouselflow.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <!-- Water Ripple Effect Container -->
+    <div class="water-ripple-container" id="rippleContainer"></div>
+    <div class="water-surface" id="waterSurface"></div>
+    
+    <script>
+        // Directional Water Ripple Effect Implementation
+        class DirectionalWaterRippleEffect {
+            constructor() {
+                this.rippleContainer = document.getElementById('rippleContainer');
+                this.waterSurface = document.getElementById('waterSurface');
+                this.lastMouseX = 0;
+                this.lastMouseY = 0;
+                this.mouseVelocityX = 0;
+                this.mouseVelocityY = 0;
+                this.isMoving = false;
+                this.lastRippleTime = 0;
+                this.velocityHistory = [];
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.startTrailAnimation();
+            }
+            
+            setupEventListeners() {
+                document.addEventListener('mousemove', (e) => {
+                    this.handleMouseMove(e);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    this.createLargeDirectionalRipple(e.clientX, e.clientY);
+                });
+                
+                // Create ripples on hover over interactive elements
+                const interactiveElements = document.querySelectorAll('.btn, .feature-card, .floating-card, .main-video, .small-video');
+                interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', (e) => {
+                        const rect = element.getBoundingClientRect();
+                        this.createMediumDirectionalRipple(rect.left + rect.width/2, rect.top + rect.height/2);
+                    });
+                });
+            }
+            
+            calculateVelocity(mouseX, mouseY) {
+                const deltaX = mouseX - this.lastMouseX;
+                const deltaY = mouseY - this.lastMouseY;
+                
+                this.mouseVelocityX = deltaX;
+                this.mouseVelocityY = deltaY;
+                
+                // Store velocity history for momentum calculation
+                this.velocityHistory.push({ x: deltaX, y: deltaY });
+                if (this.velocityHistory.length > 5) {
+                    this.velocityHistory.shift();
+                }
+                
+                this.lastMouseX = mouseX;
+                this.lastMouseY = mouseY;
+            }
+            
+            getAverageVelocity() {
+                if (this.velocityHistory.length === 0) return { x: 0, y: 0 };
+                
+                const avgX = this.velocityHistory.reduce((sum, v) => sum + v.x, 0) / this.velocityHistory.length;
+                const avgY = this.velocityHistory.reduce((sum, v) => sum + v.y, 0) / this.velocityHistory.length;
+                
+                return { x: avgX, y: avgY };
+            }
+            
+            handleMouseMove(e) {
+                const { clientX, clientY } = e;
+                
+                this.calculateVelocity(clientX, clientY);
+                
+                // Update water surface effect
+                this.waterSurface.style.setProperty('--mouse-x', (clientX / window.innerWidth * 100) + '%');
+                this.waterSurface.style.setProperty('--mouse-y', (clientY / window.innerHeight * 100) + '%');
+                
+                // Create movement ripples
+                const currentTime = Date.now();
+                if (currentTime - this.lastRippleTime > 100) { // Throttle ripples
+                    const velocity = this.getAverageVelocity();
+                    const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                    
+                    if (speed > 2) { // Only create ripples when moving with sufficient speed
+                        this.createDirectionalMovementRipple(clientX, clientY, velocity);
+                        this.createDirectionalTrail(clientX, clientY, velocity);
+                        this.lastRippleTime = currentTime;
+                    }
+                }
+                
+                this.isMoving = true;
+                clearTimeout(this.moveTimeout);
+                this.moveTimeout = setTimeout(() => {
+                    this.isMoving = false;
+                    this.velocityHistory = [];
+                }, 100);
+            }
+              createDirectionalMovementRipple(x, y, velocity) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                  const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                const size = Math.min(8 + speed * 0.8, 20);
+                
+                // Calculate angle based on movement direction
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                
+                // Calculate momentum offset
+                const momentumX = velocity.x * 1.5;
+                const momentumY = velocity.y * 1.5;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                
+                // Adjust opacity and color based on speed
+                const opacity = Math.min(0.3 + speed * 0.02, 0.6);
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(0, 122, 255, ${opacity}) 0%, 
+                    rgba(0, 210, 255, ${opacity * 0.7}) 30%, 
+                    rgba(255, 255, 255, ${opacity * 0.3}) 60%, 
+                    transparent 100%)`;
+                  this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 400);
+            }
+              createMediumDirectionalRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                  const velocity = this.getAverageVelocity();
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                const size = 15 + Math.random() * 8;
+                
+                const momentumX = velocity.x * 1;
+                const momentumY = velocity.y * 1;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(0, 122, 255, 0.5) 0%, 
+                    rgba(0, 210, 255, 0.3) 30%, 
+                    rgba(255, 255, 255, 0.2) 60%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+              createLargeDirectionalRipple(x, y) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('water-ripple', 'directional');
+                
+                const velocity = this.getAverageVelocity();
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                const size = 40 + Math.random() * 20;
+                
+                const momentumX = velocity.x * 2;
+                const momentumY = velocity.y * 2;
+                
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                ripple.style.setProperty('--ripple-angle', angle + 'deg');
+                ripple.style.setProperty('--momentum-x', momentumX + 'px');
+                ripple.style.setProperty('--momentum-y', momentumY + 'px');
+                ripple.style.background = `linear-gradient(${angle}deg, 
+                    rgba(0, 122, 255, 0.6) 0%, 
+                    rgba(0, 210, 255, 0.4) 30%, 
+                    rgba(255, 255, 255, 0.3) 60%, 
+                    transparent 100%)`;
+                ripple.style.animationDuration = '0.8s';
+                
+                this.rippleContainer.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 800);
+            }
+              createDirectionalTrail(x, y, velocity) {
+                const trail = document.createElement('div');
+                trail.classList.add('water-trail');
+                
+                const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
+                
+                trail.style.left = x + 'px';
+                trail.style.top = y + 'px';
+                trail.style.transform = `rotate(${angle}deg)`;
+                trail.style.background = `linear-gradient(${angle}deg, 
+                    rgba(0, 122, 255, 0.4) 0%, 
+                    rgba(0, 210, 255, 0.2) 50%, 
+                    transparent 100%)`;
+                
+                this.rippleContainer.appendChild(trail);
+                
+                setTimeout(() => {
+                    trail.remove();
+                }, 400);
+            }
+            
+            startTrailAnimation() {
+                // Create ambient water effects
+                setInterval(() => {
+                    if (!this.isMoving) {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * window.innerHeight;
+                        const randomVelocity = { 
+                            x: (Math.random() - 0.5) * 15, 
+                            y: (Math.random() - 0.5) * 15 
+                        };
+                        
+                        if (Math.random() > 0.7) { // 30% chance
+                            this.createDirectionalMovementRipple(x, y, randomVelocity);
+                        }
+                    }
+                }, 3000);
+            }
+        }
+        
+        // Initialize water ripple effect when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new DirectionalWaterRippleEffect();
+        });
+    </script>
+</body>
+</html>
