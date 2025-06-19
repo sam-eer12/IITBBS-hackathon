@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Video Call Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ConnectSpace</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Parallax Sections -->
+    <section class="parallax-section" id="home">
+        <div class="parallax-bg" data-speed="0.5">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Team collaboration background">
+        </div>
+        <div class="parallax-content">
+            <div class="video-call-interface">
+                <div class="main-video">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80" alt="Person in video call">
+                    <div class="video-overlay">
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Los Angeles</span>
+                        </div>
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>May 5 1:56 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="secondary-videos">
+                    <div class="small-video">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Second participant">
+                    </div>
+                    <div class="small-video">
+                        <img src="data:image/jpeg;base64,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" alt="Third participant">
+                    </div>
+                </div>
+                <div class="connection-status">
+                    <div class="status-indicator"></div>
+                    <span>Connection</span>
+                </div>
+            </div>
+            <div class="hero-text">
+                <h1 class="main-title">Share quality time.</h1>
+                <h1 class="sub-title">And space.</h1>
+                <p class="description">Connect with people around the world through immersive video experiences that bring you closer together, no matter the distance.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Start Video Call</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-section features-section">
+        <div class="parallax-bg" data-speed="0.3">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80" alt="Modern workspace">
+        </div>
+        <div class="parallax-content">
+            <div class="features-container">
+                <h2>Premium Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-parallax="0.2">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>HD Video Quality</h3>
+                        <p>Crystal clear video calls with adaptive quality that adjusts to your connection.</p>
+                    </div>
+                    <div class="feature-card" data-parallax="0.4">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Group Collaboration</h3>
+                        <p>Connect with up to 100 participants in a single call with advanced moderation tools.</p>
+                    </div>
+                    <div class="feature-card" data-parallax="0.6">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>End-to-End Security</h3>
+                        <p>Your conversations are protected with military-grade encryption and privacy controls.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-section experience-section">
+        <div class="parallax-bg" data-speed="0.7">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Technology background">
+        </div>
+        <div class="parallax-content">
+            <div class="experience-container">
+                <div class="floating-elements">
+                    <div class="floating-card" data-parallax="0.1">
+                        <i class="fas fa-globe"></i>
+                        <span>Global Reach</span>
+                    </div>
+                    <div class="floating-card" data-parallax="0.3">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Available</span>
+                    </div>
+                    <div class="floating-card" data-parallax="0.5">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Cross Platform</span>
+                    </div>
+                </div>
+                <div class="experience-text">
+                    <h2>Experience the Future</h2>
+                    <p>Revolutionary technology that transforms how we connect, collaborate, and share moments together.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10M+</span>
+                            <span class="stat-label">Active Users</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
