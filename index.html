@@ -7,6 +7,47 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>    <div class="loading-container">
+        <!-- Homepage content as background -->
+        <div id="homepage-background" class="homepage-content">
+            <!-- Simplified homepage content -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <h2>TechFlow</h2>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#services" class="nav-link">Services</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <section class="hero">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="gradient-text">Innovate.</span>
+                            <span class="gradient-text">Create.</span>
+                            <span class="gradient-text">Transform.</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            We build cutting-edge digital solutions that drive your business forward 
+                            with innovation, creativity, and unmatched expertise.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary">Get Started</button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
         <!-- Loading screen overlay -->
         <div class="loading-overlay">
             <!-- Thick loading bar in middle -->
@@ -14,7 +55,7 @@
                 <div class="loading-bar-fill"></div>
             </div>
             
-            <!-- Split bars animation -->
+            <!-- Split bars animation with mask -->
             <div class="split-bars">
                 <div class="split-bar-left"></div>
                 <div class="split-bar-right"></div>
@@ -25,27 +66,26 @@
                 <span id="loading-percentage">0%</span>
             </div>
         </div>
-        
-        <!-- Main content (home page) -->
+          <!-- Main content (home page) -->
         <div class="main-content">
             <div class="hero-section">
                 <h1>Welcome to Our Platform</h1>
                 <p>Discover amazing features and experiences</p>
-                <button class="cta-button">Get Started</button>
+                <a href="homepage/index.html" class="cta-button">Explore Homepage</a>
             </div>
             
             <div class="features-section">
                 <div class="feature-card">
-                    <h3>Feature One</h3>
-                    <p>Amazing functionality that will blow your mind</p>
+                    <h3>Ocean Blue Theme</h3>
+                    <p>Beautiful ocean-inspired design with modern aesthetics</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Feature Two</h3>
-                    <p>Incredible tools to boost your productivity</p>
+                    <h3>Interactive Assets</h3>
+                    <p>Hover effects with video autoplay and smooth animations</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Feature Three</h3>
-                    <p>Seamless integration with your workflow</p>
+                    <h3>Responsive Design</h3>
+                    <p>Seamless experience across all devices and screen sizes</p>
                 </div>
             </div>
         </div>

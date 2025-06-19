@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TechFlow</h2>
+            </div>            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <!-- Asset cards positioned behind hero content -->
+            <div class="hero-visual">                <div class="floating-elements">
+                    <!-- Left side elements -->
+                    <div class="floating-shape circle-chart" data-position="top-left">
+                        <div class="chart-image">
+                            <img src="../assets/graph.png" alt="Analytics Chart">
+                        </div>
+                        <div class="chart-container">
+                            <div class="pie-chart"></div>
+                            <div class="chart-labels">
+                                <div class="label">Analytics</div>
+                                <div class="value">78.5%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape data-card" data-position="mid-left">
+                        <div class="card-image">
+                            <img src="../assets/stats.png" alt="Revenue Stats">
+                        </div>
+                        <div class="card-header">Revenue</div>
+                        <div class="card-value">$42.3K</div>
+                        <div class="card-trend">↗ +12.5%</div>
+                    </div>
+
+                    <div class="floating-shape mini-chart" data-position="bottom-left">
+                        <div class="chart-image">
+                            <img src="../assets/cards.png" alt="Data Cards">
+                        </div>
+                        <div class="chart-bars">
+                            <div class="bar" style="height: 60%"></div>
+                            <div class="bar" style="height: 80%"></div>
+                            <div class="bar" style="height: 45%"></div>
+                            <div class="bar" style="height: 90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right side elements -->
+                    <div class="floating-shape dashboard-widget" data-position="top-right">
+                        <div class="widget-image">
+                            <video muted loop>
+                                <source src="../assets/features-services.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="widget-header">Performance</div>
+                        <div class="progress-ring">
+                            <div class="progress-value">85%</div>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape notification-card" data-position="mid-right">
+                        <div class="notification-image">
+                            <video muted loop>
+                                <source src="../assets/customer-section.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="notification-icon">📊</div>
+                        <div class="notification-text">
+                            <div class="title">Report Generated</div>
+                            <div class="subtitle">2 min ago</div>
+                        </div>
+                    </div>
+
+                    <div class="floating-shape metric-box" data-position="bottom-mid-right">
+                        <div class="metric-image">
+                            <video muted loop>
+                                <source src="../assets/parallax animation.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="metric-label">Users</div>
+                        <div class="metric-number">1,247</div>
+                        <div class="metric-change">+23 today</div>
+                    </div>
+
+                    <div class="floating-shape geometric-accent" data-position="bottom-right">
+                        <div class="accent-image">
+                            <video muted loop>
+                                <source src="../assets/ripple effect.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="accent-shape"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Innovate.</span>
+                    <span class="gradient-text">Create.</span>
+                    <span class="gradient-text">Transform.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    We build cutting-edge digital solutions that drive your business forward 
+                    with innovation, creativity, and unmatched expertise.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-animation">
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+            <div class="bg-shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Us</h2>
+                <p>Discover what makes us the perfect partner for your digital transformation</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>We leverage cutting-edge technologies to create solutions that are ahead of the curve.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Our team of experienced professionals brings years of expertise to every project.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Timely Delivery</h3>
+                    <p>We understand deadlines matter and ensure projects are delivered on time, every time.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock support to ensure your systems run smoothly at all times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with modern technologies and best practices.</p>
+                    <ul>
+                        <li>Responsive Design</li>
+                        <li>Modern Frameworks</li>
+                        <li>SEO Optimized</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                <div class="service-card featured">
+                    <div class="featured-badge">Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile applications that deliver exceptional user experiences.</p>
+                    <ul>
+                        <li>iOS & Android</li>
+                        <li>Cross-Platform</li>
+                        <li>UI/UX Design</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and services to power your business growth.</p>
+                    <ul>
+                        <li>AWS & Azure</li>
+                        <li>DevOps</li>
+                        <li>Scalable Architecture</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your next project? Let's discuss how we can help</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Innovation Street<br>Tech City, TC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hello@techflow.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechFlow</h3>
+                    <p>Transforming ideas into digital reality with innovation and expertise.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">Cloud Solutions</a></li>
+                        <li><a href="#">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

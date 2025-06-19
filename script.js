@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 startBreakingAnimation();
             }, 300);
         }
-    }, updateInterval);
-      // Function to start the breaking and expansion animation
+    }, updateInterval);    // Function to start the breaking and expansion animation
     function startBreakingAnimation() {
         // Hide the main loading bar
         mainLoadingBar.style.display = 'none';
@@ -45,32 +44,48 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add the completion animation class
         splitBars.classList.add('loading-complete');
         
-        // Start content reveal animation after L formation
+        // Create reveal effect with clip-path during L formation
         setTimeout(() => {
-            mainContent.classList.add('content-reveal');
-        }, 1200);
-        
-        // Hide the loading overlay after L expansion
-        setTimeout(() => {
-            loadingOverlay.classList.add('loading-hidden');
-        }, 1800);
-        
-        // Final cleanup
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }, 2500);
+            // Start revealing homepage content with L-shaped mask
+            const steps = 20;
+            let currentStep = 0;
+            
+            const revealInterval = setInterval(() => {
+                currentStep++;
+                const progress = currentStep / steps;
+                
+                // Create L-shaped reveal mask
+                const leftWidth = Math.min(50 * progress, 50);
+                const bottomHeight = Math.min(50 * progress, 50);
+                
+                // Apply clip-path to create L-shaped reveal
+                loadingOverlay.style.clipPath = `inset(0 ${100 - leftWidth}% ${100 - bottomHeight}% 0)`;
+                
+                if (currentStep >= steps) {
+                    clearInterval(revealInterval);
+                    // Complete reveal
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                        // Redirect to full homepage
+                        setTimeout(() => {
+                            window.location.href = 'homepage/index.html';
+                        }, 500);
+                    }, 300);
+                }
+            }, 50);
+        }, 1000); // Start reveal during L formation
     }
-    
-    // Skip loading functionality
+      // Skip loading functionality
     function skipLoading() {
         clearInterval(loadingInterval);
         progress = 100;
         percentageDisplay.textContent = '100%';
         loadingBarFill.style.width = '100%';
+        
+        // Immediate redirect when skipping
         setTimeout(() => {
-            startBreakingAnimation();
-        }, 100);
+            window.location.href = 'homepage/index.html';
+        }, 300);
     }
     
     // Keyboard interaction - Press SPACE to skip
